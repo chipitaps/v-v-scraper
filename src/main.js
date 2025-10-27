@@ -37,8 +37,6 @@ for (let i = 0; i < pages; i++) {
 const requestList = await RequestList.open('urls', url);
 
 
-const proxyConfiguration = await Actor.createProxyConfiguration();
-
 const crawler = new PlaywrightCrawler({
     proxyConfiguration,
     requestList,
@@ -46,7 +44,7 @@ const crawler = new PlaywrightCrawler({
     maxRequestRetries: 3,
     requestHandlerTimeoutSecs: 30,
     requestHandler: async ({page, request}) => {
-        await page.waitForLoadState('networkidle');
+        await page.waitForSelector('div.list-card')
         const html = await page.content();
         const $ = cheerio.load(html);
         const object = [];
@@ -81,14 +79,7 @@ const crawler = new PlaywrightCrawler({
         }
         Actor.pushData(object);
         console.log(object);
-    },
-    launchContext: {
-        launchOptions: {
-            args: [
-                '--disable-gpu', 
-            ],
-        },
-    },
+    }
 });
 
 await crawler.run(url);
