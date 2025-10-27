@@ -39,18 +39,18 @@
         "minprice": {
             "title": "Precio Minimo",
             "type": "integer",
-            "description": "El precio minimo que estas buscando",
+            "description": "El precio minimo que estas buscando (En caso de elegir arriendo, el limite se ajustara a $350.000 automaticamente).",
             "editor": "number",
-            "minimum": 9500000,
+            "minimum": 350000,
             "maximum": 16000000000,
             "unit": "COP"
         },
         "maxprice": {
             "title": "Precio Maximo",
             "type": "integer",
-            "description": "El precio maximo que estas buscando",
+            "description": "El precio maximo que estas buscando (En caso de elegir arriendo el limite se ajustara automaticamente a $50.000.000).",
             "editor": "number",
-            "minimum": 9500000,
+            "minimum": 350000,
             "maximum": 16000000000,
             "unit": "COP"
         }

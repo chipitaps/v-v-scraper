@@ -17,6 +17,12 @@ let count = 0;
 if (oper === 'Venta') {
     defUrl = 'https://viviendasyvalores.com.co/ventas/?operation=venta&tipoinm= &sectorinm= &nhabitaciones= &minNprecio= 9500000 &maxNprecio= 16000000000 &listform=0'
     replaceLink();
+    if (minprice <= 9500000) {
+        minprice = 9500000
+    }
+    if (maxprice <= 9500000) {
+        maxprice = 9500000
+    }
 } else {
     defUrl = 'https://viviendasyvalores.com.co/arriendos/?operation=arriendo&tipoinm= &sectorinm= &nhabitaciones= &minNprecio= 350000 &maxNprecio= 5350000 &listform=0'
     replaceLink();
@@ -45,7 +51,7 @@ const crawler = new PlaywrightCrawler({
         const $ = cheerio.load(html);
         const object = [];
         if ($('div.list-card').children().length === 1) {
-            console.log('No se han encontrado mas paginas')
+            console.log('No se han mas resultados')
             crawler.stop();
         } else {
             $('div.card').each((i, element) => {
