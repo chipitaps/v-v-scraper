@@ -1,65 +1,75 @@
-## PlaywrightCrawler template
+## Viviendas y Valores Scraper
 
-<!-- This is an Apify template readme -->
+Este scraper automatizado extrae información de propiedades publicadas en el sitio web viviendasyvalores.com.co, permite buscar inmuebles en venta o arriendo, filtrando por tipo de propiedad, número de habitaciones, ubicación y rango de precios.
 
-This template is a production-ready boilerplate for developing an [Actor](https://apify.com/actors) with `PlaywrightCrawler`. Use this to bootstrap your projects using the most up-to-date code.
-
-> We decided to split Apify SDK into two libraries, Crawlee and Apify SDK v3. Crawlee will retain all the crawling and scraping-related tools and will always strive to be the best [web scraping](https://apify.com/web-scraping) library for its community. At the same time, Apify SDK will continue to exist, but keep only the Apify-specific features related to building Actors on the Apify platform. Read the upgrading guide to learn about the changes.
-
-## Resources
-
-If you're looking for examples or want to learn more visit:
-
-- [Crawlee + Apify Platform guide](https://crawlee.dev/docs/guides/apify-platform)
-- [Documentation](https://crawlee.dev/api/playwright-crawler/class/PlaywrightCrawler) and [examples](https://crawlee.dev/docs/examples/playwright-crawler)
-- [Node.js tutorials](https://docs.apify.com/academy/node-js) in Academy
-- [Scraping single-page applications with Playwright](https://blog.apify.com/scraping-single-page-applications-with-playwright/)
-- [How to scale Puppeteer and Playwright](https://blog.apify.com/how-to-scale-puppeteer-and-playwright/)
-- [Integration with Zapier](https://apify.com/integrations), Make, GitHub, Google Drive and other apps
-- [Video guide on getting data using Apify API](https://www.youtube.com/watch?v=ViYYDHSBAKM)
-- A short guide on how to create Actors using code templates:
-
-[web scraper template](https://www.youtube.com/watch?v=u-i-Korzf8w)
+El actor recorre automáticamente las páginas con resultados y guarda los datos de cada propiedad (imagen, nombre, área, precio y enlace) en un dataset dentro de Apify.
+Así puedes analizar la información, exportarla a Excel o integrarla en tus propios sistemas sin hacerlo manualmente.
 
 
-## Getting started
+## Funcionalidades incluidas
 
-For complete information [see this article](https://docs.apify.com/platform/actors/development#build-actor-locally). To run the Actor use the following command:
+- Apify SDK – Para manejar la ejecución y guardar los resultados automáticamente.
+- PlaywrightCrawler (Crawlee) – Permite navegar el sitio web igual que un usuario real.
+- Cheerio – Extrae de forma rápida y precisa los datos de cada anuncio.
+- Filtros dinámicos – El actor construye automáticamente el enlace de búsqueda según tus preferencias
+
+## Como funciona
+
+1. El actor recibe tu configuración mediante un input JSON (por ejemplo, tipo de propiedad o precios).
+2. Según la operación seleccionada (Venta o Arriendo), crea una URL personalizada en el sitio de Viviendas y Valores.
+3. Recorre automáticamente todas las páginas necesarias para alcanzar la cantidad de resultados que pediste.
+4. De cada anuncio, extrae los datos principales: imagen, nombre, área, precio y enlace directo.
+5. Guarda toda la información en un dataset de Apify, lista para descargar o analizar.
+
+## Informacion del Output
+
+- Imagen de Referencia
+- Nombre
+- Area
+- Precio
+- Enlace
+
+## Como Usarlo
+
+Puedes ejecutar el actor directamente desde Apify o en tu computadora local con:
 
 ```bash
 apify run
 ```
+Ingresa un input como este
 
-## Deploy to Apify
+```json
+{
+  "inmtype": "Apartamentos",
+  "items": 20,
+  "maxprice": 1000000,
+  "minprice": 700000,
+  "oper": "Arriendo",
+  "rooms": 1
+}
+```
+El resultado esperado:
 
-### Connect Git repository to Apify
+```powershell
+[
+  {
+    "img": "https://cdnvyv.s3.us-east-2.amazonaws.com/wp-uploads/imagenes2020/29023N1zixlhbbyxBoy.jpg",
+    "name": "Apartamento en Arriendo - Cabrera",
+    "area": "50m²",
+    "price": 1200000,
+    "link": "https://viviendasyvalores.com.co/detalle-propiedad/?proid=29023&idpost=232907"
+  },
+  {
+    "img": "https://cdnvyv.s3.us-east-2.amazonaws.com/wp-uploads/imagenes2020/25849N1iYMG6QR26cEA.jpg",
+    "name": "Apartamento en Arriendo - Prados Norte",
+    "area": "64m²",
+    "price": 1200000,
+    "link": "https://viviendasyvalores.com.co/detalle-propiedad/?proid=25849&idpost=49362"
+  }
+]
+```
 
-If you've created a Git repository for the project, you can easily connect to Apify:
-
-1. Go to [Actor creation page](https://console.apify.com/actors/new)
-2. Click on **Link Git Repository** button
-
-### Push project on your local machine to Apify
-
-You can also deploy the project on your local machine to Apify without the need for the Git repository.
-
-1. Log in to Apify. You will need to provide your [Apify API Token](https://console.apify.com/account/integrations) to complete this action.
-
-    ```bash
-    apify login
-    ```
-
-2. Deploy your Actor. This command will deploy and build the Actor on the Apify Platform. You can find your newly created Actor under [Actors -> My Actors](https://console.apify.com/actors?tab=my).
-
-    ```bash
-    apify push
-    ```
-
-## Documentation reference
-
-To learn more about Apify and Actors, take a look at the following resources:
-
-- [Apify SDK for JavaScript documentation](https://docs.apify.com/sdk/js)
-- [Apify SDK for Python documentation](https://docs.apify.com/sdk/python)
-- [Apify Platform documentation](https://docs.apify.com/platform)
-- [Join our developer community on Discord](https://discord.com/invite/jyEM2PRvMU)
+## Consejos y Notas
+- El actor se detiene automáticamente cuando alcanza la cantidad de resultados solicitados o si no hay más propiedades disponibles.
+- Los filtros de precio mínimo y máximo se ajustan de forma automática si están fuera del rango permitido por el sitio web.
+- Los resultados se pueden descargar desde el Dataset en formato CSV, JSON, Excel o XML.
