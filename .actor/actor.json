@@ -1,0 +1,13 @@
+{
+	"actorSpecification": 1,
+	"name": "viviendasyvalores-scraper",
+	"title": "Project Playwright Crawler JavaScript",
+	"description": "Crawlee and Playwright project in JavaScript.",
+	"version": "0.0",
+	"meta": {
+		"templateId": "js-crawlee-playwright-chrome",
+		"model": "<FILL-IN-MODEL>"
+	},
+	"input": "./input_schema.json",
+	"dockerfile": "../Dockerfile"
+}

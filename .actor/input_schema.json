@@ -1,0 +1,58 @@
+{
+    "title": "Viviendas y Valores S.A Scraper",
+    "type": "object",
+    "schemaVersion": 1,
+    "properties": {
+        "oper": {
+            "title": "Operacion",
+            "type": "string",
+            "description": "Elija la operacion que desea realizar",
+            "enum": ["Venta", "Arriendo"],
+            "prefill" : "Venta"
+        },
+        "items": {
+            "title": "Items",
+            "type": "integer",
+            "description": "Ingrese el numero de items que desea buscar.",
+            "editor": "number",
+            "minimum": 1
+        },
+        "inmtype": {
+            "title": "Tipo de inmueble",
+            "type": "string",
+            "description": "Elige el tipo de inmueble que deseas buscar (En caso de no especificarse se buscaran todos).",
+            "enum": ["Apartaestudio","Apartamentos","Bodega","Casa finca","Casa Lote","Casa Negocio","Casas","Centro recreacional","Consultorios","Edificio","Fincas","Hotel","Local","Lote","Oficina","Parqueadero","Restaurante","Suite"]
+        },
+        "loc": {
+            "title": "Sector o Ubicacion",
+            "type": "string",
+            "description": "Ingresa la ubicacion en la que deseas buscar (En caso de no especificarse se buscaran todos).",
+            "enum": ["Acacios","Aeropuerto","Alcala","Alfonso l","Anillo vial occidental","Anillo vial oriental","Atalaya","Avgran colombia","Barrio blanco","Bellavista","Bochalema","Bocono","Bosque","Cabrera","Callejon","Cambulos","Caobos","Capillana","Carora","Cc ventura plaza","Ceiba","Ceiba ii","Centro","Chinacota","Colpet","Colsag","Corozal","Corral de piedra","Cundinamarca","Diagonal santander","El contento","El cuji","El escobal","El llano","El resumen","El rosal","El salado","Gaitan","Garcia herreros","Govika","Gratamira","Guaimaral","Hda trapiches ii","La carolina (via bocono)","La floresta","La insula","La libertad","La merced","La playa","La rinconada","La riviera","Latino","Lleras","Lleras restrepo","Loma de bolivar","Molinos del norte","Natura","Niza","Nuevo escobal","Olga teresa","Panamericano","Paramo","Parques residenciales","Patios","Pescadero","Pinar del rio","Playa hermosa","Popular","Portachuelo","Portal de los prados","Portico","Prados club","Prados del este","Prados i","Prados norte","Pueblo nuevo","Puerto stder","Quinta bosh","Quinta oriental","Quinta velez","Recta corozal","Recta los alamos","Recta los vados","Sabana de trapiches","Salado","San eduardo","San faustino","San gerardo","San jos","San luis","San martin","San mateo","San miguel","San rafael","Santa ana b","Santa lucia","Santander","Sayago","Sevilla","Tasajero","Torcoroma","Trigal del norte","Valle ester","Variante la floresta","Via club tenis","Villa del rosario","Villas de altamira","Zona industrial","Zulia","Zulima"]
+        },
+        "rooms": {
+            "title": "Numero de habitaciones",
+            "type": "integer",
+            "description": "Ingrese el numero de habitaciones que desea (En caso de seleccionar 0 se buscaran todos).",
+            "minimum": 1,
+            "maximum": 5
+        },
+        "minprice": {
+            "title": "Precio Minimo",
+            "type": "integer",
+            "description": "El precio minimo que estas buscando",
+            "editor": "number",
+            "minimum": 9500000,
+            "maximum": 16000000000,
+            "unit": "COP"
+        },
+        "maxprice": {
+            "title": "Precio Maximo",
+            "type": "integer",
+            "description": "El precio maximo que estas buscando",
+            "editor": "number",
+            "minimum": 9500000,
+            "maximum": 16000000000,
+            "unit": "COP"
+        }
+    }
+}
