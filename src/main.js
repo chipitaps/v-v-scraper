@@ -58,8 +58,6 @@ const crawler = new PlaywrightCrawler({
                 } else {
                     if ($(element).length > 0){
                         const infoObject = {
-                            num: count,
-                            item: items,
                             img: $(element).find('div.img').attr('style').split('(')[1].split(')')[0].trim(),
                             name: $(element).find('div.body-container div div.description h3').text().trim(),
                             area: $(element).find('div.body-container div div.detail div:nth-child(1) p').text().replaceAll(' ','').replaceAll('2','²'),
