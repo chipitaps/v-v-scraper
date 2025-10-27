@@ -44,14 +44,14 @@ const crawler = new PlaywrightCrawler({
     requestList,
     maxConcurrency: 1,
     maxRequestRetries: 3,
-    requestHandlerTimeoutSecs: 20,
+    requestHandlerTimeoutSecs: 30,
     requestHandler: async ({page, request}) => {
         await page.waitForLoadState('networkidle');
         const html = await page.content();
         const $ = cheerio.load(html);
         const object = [];
         if ($('div.list-card').children().length === 1) {
-            console.log('No se han mas resultados')
+            console.log('No se han encontrado mas resultados')
             crawler.stop();
         } else {
             $('div.card').each((i, element) => {
