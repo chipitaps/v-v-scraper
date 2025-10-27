@@ -1,13 +1,60 @@
 {
 	"actorSpecification": 1,
 	"name": "viviendasyvalores-scraper",
-	"title": "Project Playwright Crawler JavaScript",
-	"description": "Crawlee and Playwright project in JavaScript.",
+	"title": "Viviendas y Valores scraper",
+	"description": "Extraiga informacion de arriendos y ventas de inmuebles.",
 	"version": "0.0",
 	"meta": {
 		"templateId": "js-crawlee-playwright-chrome",
 		"model": "<FILL-IN-MODEL>"
 	},
 	"input": "./input_schema.json",
-	"dockerfile": "../Dockerfile"
+	"dockerfile": "../Dockerfile",
+	"storages": {
+        "dataset": {
+            "actorSpecification": 1,
+            "title": "Dataset",
+            "description": "",
+            "views": {
+                "products": {
+                    "title": "Overview",
+                    "description": "Puede demorar un momento la carga de la informacion.",
+                    "transformation": {
+                        "fields": [
+                            "image",
+                            "name",
+							"area",
+                            "price",
+							"link"
+                        ]
+                    },
+                    "display": {
+                        "component": "table",
+                        "properties": {
+                            "image": {
+                                "label": "Imagen de referencia",
+                                "format": "image"
+                            },
+                            "name": {
+                                "label": "Nombre",
+                                "format": "text"
+                            },
+							"area": {
+								"label": "Area del apartamento",
+								"format": "text"
+							},
+                            "price": {
+								"label": "Precio",
+                                "format": "number"
+                            },
+							"link": {
+								"label": "Link de la oferta",
+								"format": "link"
+							}
+                        }
+                    }
+                }
+            }
+		}
+	}
 }

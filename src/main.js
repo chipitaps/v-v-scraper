@@ -59,7 +59,6 @@ const crawler = new PlaywrightCrawler({
                     crawler.stop();
                     return false
                 } else {
-                    console.log(request.url)
                     if ($(element) != undefined){
                         const infoObject = {
                             num: count,
