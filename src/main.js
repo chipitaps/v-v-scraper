@@ -38,7 +38,6 @@ const requestList = await RequestList.open('urls', url);
 
 
 const crawler = new PlaywrightCrawler({
-    proxyConfiguration,
     requestList,
     maxConcurrency: 1,
     maxRequestRetries: 3,
