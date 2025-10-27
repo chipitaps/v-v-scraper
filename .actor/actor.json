@@ -21,7 +21,7 @@
                     "description": "Puede demorar un momento la carga de la informacion.",
                     "transformation": {
                         "fields": [
-                            "image",
+                            "img",
                             "name",
 							"area",
                             "price",
@@ -31,7 +31,7 @@
                     "display": {
                         "component": "table",
                         "properties": {
-                            "image": {
+                            "img": {
                                 "label": "Imagen de referencia",
                                 "format": "img"
                             },

@@ -11,7 +11,7 @@ let { loc } = input;
 let { rooms } = input;
 let { minprice } = input;
 let { maxprice } = input;
-let pages = Math.floor(items / 10) + 1
+let pages = (items % 10 != 0)? Math.floor(items / 10) + 1: (items/10)
 let defUrl;
 let count = 0;
 if (oper === 'Venta') {
