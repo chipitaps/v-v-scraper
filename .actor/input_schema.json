@@ -54,5 +54,6 @@
             "maximum": 16000000000,
             "unit": "COP"
         }
-    }
+    },
+    "required": ["items","oper"]
 }
