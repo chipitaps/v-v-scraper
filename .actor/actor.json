@@ -33,7 +33,7 @@
                         "properties": {
                             "image": {
                                 "label": "Imagen de referencia",
-                                "format": "image"
+                                "format": "img"
                             },
                             "name": {
                                 "label": "Nombre",
